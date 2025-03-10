@@ -1,3 +1,3 @@
 return {
-    ["NOOBFDAB"] = "Nigga get out of this shit"
+    ["Roblox"] = "Nigga get out of this shit"
 }
