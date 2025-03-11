@@ -1,3 +1,4 @@
 return {
-    ["RO BLOX1"] = "you are too noob lol"
+    ["PHOTONTESTER"] = "Unsupport user",
+    ["Reason With ledge"] = "Resell"
 }
