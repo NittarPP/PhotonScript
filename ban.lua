@@ -1,3 +1,3 @@
 return {
-    ["NOOBFDAB"] = "you are too noob lol"
+    ["Roblox"] = "you are too noob lol"
 }
