@@ -10,8 +10,7 @@ if not success or type(KeyList) ~= "table" then
 end
 
 for _, validKey in ipairs(KeyList) do
-    if _G.key == validKey then
-        
+    if _G.key == validKey then 
         if not game:GetService("Stats"):FindFirstChild("Accepted") then
             local kd = Instance.new("RemoteEvent")
             kd.Name = "Accepted"
@@ -28,13 +27,14 @@ for _, validKey in ipairs(KeyList) do
         end)
         
         if scriptSuccess and scriptContent and scriptContent ~= "" then
-            wait(5)
             loadstring(game:HttpGet("https://raw.githubusercontent.com/NittarPP/PhotonScript/refs/heads/main/Src/" .. game.PlaceId .. ".lua"))()
         else
             local player = game.Players.LocalPlayer
             player:Kick("\n [ Photon Hub ] \n not a support game")
         end
-
+    else
+        local player = game.Players.LocalPlayer
+        player:Kick("\n [ Photon Hub ] \n Key not valid")
     end
 end
 
