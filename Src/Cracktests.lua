@@ -1,1 +1,3 @@
-print("it me photon s")
+return {
+	"bruh"
+}
