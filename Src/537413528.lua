@@ -5,13 +5,13 @@
 --]]
 
 --[[
-    Script by Jacob
+    Script by Jacob & kokie
     Auto farm by Jacob
     
     Hoho don't skid gay
 --]]
-
-print("working")
+warn("-----------------------------------------------")
+print("Loading")
 
 local HttpService = game:GetService("HttpService")
 local TeleportService = game:GetService("TeleportService")
@@ -35,7 +35,7 @@ if game.PlaceId ~= 537413528 then
     return
 end
 
-print("working")
+print("Loading service")
 
 local Library = loadstring(game:HttpGet("https://github.com/ActualMasterOogway/Fluent-Renewed/releases/latest/download/Fluent.luau"))()
 local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/ActualMasterOogway/Fluent-Renewed/master/Addons/SaveManager.luau"))()
@@ -43,7 +43,7 @@ local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.
 
 local Window = Library:CreateWindow{
     Title = "Build a Boat for Treasure",
-    SubTitle = "by Nova",
+    SubTitle = "by 21xp team",
     TabWidth = 160,
     Size = UDim2.fromOffset(830, 525),
     Resize = true, 
@@ -52,11 +52,15 @@ local Window = Library:CreateWindow{
     Theme = "Dark",
     MinimizeKey = Enum.KeyCode.RightControl 
 }
+print("Loading window")
 
 local Tabs = {
     Main = Window:CreateTab{ Title = "Farm", Icon = "chevrons-up" },
+        c = Window:CreateTab{ Title = "Credit", Icon = "credit-card" },
+
     Settings = Window:CreateTab{ Title = "UI Settings", Icon = "settings" }
 }
+print("Loading tab")
 
 local Options = Library.Options
 local Toggle = Tabs.Main:CreateToggle("MyToggle", {Title = "Auto Farm", Default = false })
@@ -106,6 +110,33 @@ player.CharacterAdded:Connect(function()
         startAutoFarm()
     end
 end)
+print("Loading Auto Farm")
+
+--[[
+
+
+
+ Credit Tab (c name)
+
+
+
+--]]
+
+
+Tabs.c:CreateParagraph("Aligned Paragraph", {
+    Title = "Jacob",
+    Content = "Co Leader, Scripter",
+    TitleAlignment = "Middle",
+    ContentAlignment = Enum.TextXAlignment.Center
+})
+Tabs.c:CreateParagraph("Aligned Paragraph", {
+    Title = "Kokie",
+    Content = "Leader, Scripter",
+    TitleAlignment = "Middle",
+    ContentAlignment = Enum.TextXAlignment.Center
+})
+print("Loading Credit")
+
 
 SaveManager:SetLibrary(Library)
 InterfaceManager:SetLibrary(Library)
@@ -119,5 +150,7 @@ InterfaceManager:BuildInterfaceSection(Tabs.Settings)
 SaveManager:BuildConfigSection(Tabs.Settings)
 
 SaveManager:LoadAutoloadConfig()
+print("Loading SaveManager")
 
 print("stop")
+warn("-----------------------------------------------")
