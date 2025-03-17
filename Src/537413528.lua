@@ -1,6 +1,8 @@
 -- Lol why you dont add build a boat script
 
-
+--[[
+   This is build a boat for tresure script
+--]]
 
 --[[
     Script by Jacob
