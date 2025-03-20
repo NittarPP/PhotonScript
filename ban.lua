@@ -1,6 +1,3 @@
 return {
-    ["ROBLOX"] = "Cheating",
-    [11111111111] = "Exploiting",
-    ["00.000.000.00"] = "IP Ban",
-    ["NIGGA"] = "Client Ban"
+    ["D8985DB9-66F6-46AF-A714-FCE13549DFBC"] = "bypass key open ticket to un ban"
 }
