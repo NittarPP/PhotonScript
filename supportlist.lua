@@ -1,0 +1,5 @@
+return {
+    "Xeno",
+    "Solara",
+    "Krnl"
+}
