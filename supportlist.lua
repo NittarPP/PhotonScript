@@ -2,7 +2,7 @@ return {
     ["Xeno"] = "💚",
     ["Solara"] = "🧡",
     ["Krnl"] = "💚",
-    ["Ronix"] = "🧡",
+    ["RonixExploit"] = "🧡",
     ["Flexer"] = "💛",
     ["AWP"] = "💚",
     ["Wave"] = "💚",
@@ -10,5 +10,6 @@ return {
     ["Cryptic"] = "🧡",
     ["Codex"] = "💚",
     ["Delta"] = "🧡",
-    ["Fluxus"] = "🧡"
+    ["Fluxus"] = "🧡",
+    ["velocity"] = "🧡"
 }
