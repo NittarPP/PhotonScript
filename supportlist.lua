@@ -1,15 +1,13 @@
 return {
     ["Xeno"] = "💚",
-    ["Solara"] = "🧡",
+    ["Solara"] = "💚",
     ["Krnl"] = "💚",
-    ["RonixExploit"] = "💛",
-    ["Flexer"] = "💛",
-    ["AWP"] = "💚",
-    ["Wave"] = "💚",
-    ["Apple-Ware"] = "🧡",
-    ["Cryptic"] = "🧡",
-    ["Codex"] = "💚",
-    ["Delta"] = "🧡",
-    ["Fluxus"] = "🧡",
-    ["velocity"] = "🧡"
+	["Swift"] = "💛",
+	["Delta"] = "💚",
+	["VegaX"] = "💚",
+	["Fluxus"] = "💚",
+	["velocity"] = "💚",
+	["RonixExploit"] = "💛",
+	["Codex"] = "💚",
+	["Flexer"] = "💚"
 }
