@@ -1,1 +1,1 @@
-https://raw.githubusercontent.com/EqHubv2/Library/refs/heads/main/the_fuck/lua
+ loadstring(game:HttpGet("https://raw.githubusercontent.com/NittarPP/PhotonScript/refs/heads/main/Loading/new/Loader"))()
