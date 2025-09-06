@@ -42,7 +42,7 @@ local function chatMessage(str)
 end
 
 -- Target player
-local targetName = "kokie.cx"
+local targetName = "Kokie_Cx"
 local saidHi = false
 
 -- Commands table
@@ -144,3 +144,4 @@ end)
 
 -- Initial check
 checkPlayers()
+
