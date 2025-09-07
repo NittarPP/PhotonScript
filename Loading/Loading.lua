@@ -44,59 +44,60 @@ end
 local following = false
 local followConnection
 
--- Follow helper function using Humanoid:MoveTo and Pathfinding
+local lastJumpTime = 0
+local JUMP_COOLDOWN = 0.3 -- faster cooldown
+local MAX_JUMP_HEIGHT = 4
+local MOVE_ACCELERATION = 80 -- speed multiplier
+
 local function followPlayer(player)
-    local kokie = Players:FindFirstChild("Kokie_Cx")
-    if not kokie or not kokie.Character or not kokie.Character:FindFirstChild("HumanoidRootPart") then return end
+	local kokie = Players:FindFirstChild("Kokie_Cx")
+	if not kokie or not kokie.Character then return end
 
-    local hrp = player.Character and player.Character:FindFirstChild("HumanoidRootPart")
-    local humanoid = player.Character and player.Character:FindFirstChild("Humanoid")
-    if not hrp or not humanoid then return end
+	following = true
 
-    following = true
+	if followConnection then followConnection:Disconnect() end
 
-    if followConnection then followConnection:Disconnect() end
+	followConnection = RunService.Heartbeat:Connect(function(delta)
+		local char = player.Character
+		local humanoid = char and char:FindFirstChild("Humanoid")
+		local hrp = char and char:FindFirstChild("HumanoidRootPart")
+		local kokieChar = kokie.Character
+		local targetHRP = kokieChar and kokieChar:FindFirstChild("HumanoidRootPart")
 
-    followConnection = RunService.Heartbeat:Connect(function(delta)
-        if not following then return end
-        if not (player.Character and humanoid and hrp and kokie.Character and kokie.Character:FindFirstChild("HumanoidRootPart")) then return end
+		if not (char and humanoid and hrp and targetHRP and following) then return end
 
-        local targetPos = kokie.Character.HumanoidRootPart.Position
-        local distance = (targetPos - hrp.Position).Magnitude
+		local targetPos = targetHRP.Position
+		local distance = (targetPos - hrp.Position).Magnitude
 
-        if distance > 3 then
-            -- Direction vector
-            local dir = (targetPos - hrp.Position).Unit
-            local rayOrigin = hrp.Position
-            local rayDirection = dir * 4
-            local raycastParams = RaycastParams.new()
-            raycastParams.FilterDescendantsInstances = {player.Character}
-            raycastParams.FilterType = Enum.RaycastFilterType.Blacklist
+		if distance > 2 then
+			local direction = (targetPos - hrp.Position).Unit
 
-            local raycastResult = Workspace:Raycast(rayOrigin, rayDirection, raycastParams)
+			-- Raycast at chest height for obstacles
+			local rayOrigin = hrp.Position + Vector3.new(0, 1.5, 0)
+			local rayDirection = direction * 4
 
-            if raycastResult then
-                local hitPart = raycastResult.Instance
-                local hitPos = raycastResult.Position
-                local heightDiff = hitPos.Y - hrp.Position.Y
+			local rayParams = RaycastParams.new()
+			rayParams.FilterDescendantsInstances = {char}
+			rayParams.FilterType = Enum.RaycastFilterType.Blacklist
 
-                -- Jump if obstacle is small enough
-                if heightDiff > 0 and heightDiff < 4 then
-                    humanoid.Jump = true
-                end
-            end
+			local result = Workspace:Raycast(rayOrigin, rayDirection, rayParams)
 
-            -- Move toward target using current WalkSpeed
-            local moveSpeed = humanoid.WalkSpeed
-            local moveVector = dir * math.min(moveSpeed * delta, distance)
-            local newPos = hrp.Position + moveVector
-            humanoid:MoveTo(newPos)
-        else
-            humanoid:MoveTo(hrp.Position) -- stop near Kokie
-        end
-    end)
+			if result then
+				local heightDiff = result.Position.Y - hrp.Position.Y
+				local now = tick()
+				if heightDiff > 0 and heightDiff < MAX_JUMP_HEIGHT and (now - lastJumpTime) > JUMP_COOLDOWN then
+					humanoid.Jump = true
+					lastJumpTime = now
+				end
+			end
+
+			-- Use Move instead of MoveTo for instant direction updates
+			humanoid:Move(direction * MOVE_ACCELERATION)
+		else
+			humanoid:Move(Vector3.zero)
+		end
+	end)
 end
-
 
 -- Commands table
 local commands = {
@@ -227,11 +228,13 @@ end)
 -- Optional: greet Kokie
 for _, player in pairs(Players:GetPlayers()) do
     if player.Name:lower() == "kokie_cx" then
+        wait(5)
         chatMessage("Hi Kokie")
     end
 end
 Players.PlayerAdded:Connect(function(player)
     if player.Name:lower() == "kokie_cx" then
+        wait(5)
         chatMessage("Hi Kokie")
     end
 end)
